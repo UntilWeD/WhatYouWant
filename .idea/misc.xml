@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jsk7539/AndroidStudioProjects/WhatYouWant/app/src/main/res/layout/activity_add.xml" value="0.3072916666666667" />
         <entry key="..\:/Users/jsk7539/AndroidStudioProjects/WhatYouWant/app/src/main/res/layout/activity_fire_base_auth.xml" value="0.38645833333333335" />
         <entry key="..\:/Users/jsk7539/AndroidStudioProjects/WhatYouWant/app/src/main/res/layout/activity_login.xml" value="0.31197916666666664" />
         <entry key="..\:/Users/jsk7539/AndroidStudioProjects/WhatYouWant/app/src/main/res/layout/activity_main.xml" value="0.31197916666666664" />
+        <entry key="..\:/Users/jsk7539/AndroidStudioProjects/WhatYouWant/app/src/main/res/layout/activity_my_application.xml" value="0.18617021276595744" />
         <entry key="..\:/Users/jsk7539/AndroidStudioProjects/WhatYouWant/app/src/main/res/layout/activity_register.xml" value="0.31197916666666664" />
         <entry key="..\:/Users/jsk7539/AndroidStudioProjects/WhatYouWant/app/src/main/res/layout/activity_sign_up.xml" value="0.31197916666666664" />
+        <entry key="..\:/Users/jsk7539/AndroidStudioProjects/WhatYouWant/app/src/main/res/layout/item_main.xml" value="0.3072916666666667" />
+        <entry key="..\:/Users/jsk7539/AndroidStudioProjects/WhatYouWant/app/src/main/res/menu/menu_add.xml" value="0.2520833333333333" />
+        <entry key="..\:/Users/jsk7539/AndroidStudioProjects/WhatYouWant/app/src/main/res/menu/menu_main.xml" value="0.2520833333333333" />
       </map>
     </option>
   </component>

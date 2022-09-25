@@ -34,11 +34,6 @@ class MainActivity : AppCompatActivity() {
         makeRecyclerView()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        startActivity(Intent(this, LoginActivity::class.java))
-        return super.onOptionsItemSelected(item)
-    }
-
     private fun makeRecyclerView(){
         //컬렉션 모두 가져오기
         MyApplication.db.collection("news")

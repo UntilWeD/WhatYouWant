@@ -38,7 +38,6 @@ class AddActivity : AppCompatActivity() {
     }
 
 
-
     val requestLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult())
     {

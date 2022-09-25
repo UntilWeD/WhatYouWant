@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this){ task ->
                 if(task.isSuccessful){
                     Toast.makeText(this,"로그인에 성공하셨습니다. ", Toast.LENGTH_LONG).show()
-                    val intent = Intent(this,MainActivity::class.java)
+                    val intent = Intent(this,FragmentActivity::class.java)
                     startActivity(intent)
                 } else{
                     Toast.makeText(this,"로그인에 실패하셨습니다. ", Toast.LENGTH_LONG).show()

@@ -34,11 +34,6 @@ class MainActivity : AppCompatActivity() {
         makeRecyclerView()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         startActivity(Intent(this, LoginActivity::class.java))
         return super.onOptionsItemSelected(item)

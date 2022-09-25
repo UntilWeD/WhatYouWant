@@ -37,6 +37,8 @@ class AddActivity : AppCompatActivity() {
 
     }
 
+
+
     val requestLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult())
     {
@@ -102,8 +104,8 @@ class AddActivity : AppCompatActivity() {
     private fun uploadImage(docId: String){
         //add............................
         val storage = MyApplication.storage
-        val storageRef = storage.reference //파이어베이스 참조정보
-        val imgRef = storageRef.child("images/${docId}.jpg") //업로드하고자하는 이미지 파일의 정보
+        val storageRef :StorageReference = storage.reference //파이어베이스 참조정보
+        val imgRef :StorageReference = storageRef.child("images/${docId}.jpg") //업로드하고자하는 이미지 파일의 정보
 
         val file = Uri.fromFile(File(filePath))
         imgRef.putFile(file)

@@ -1,6 +1,5 @@
 package com.uwdp.whatyouwant
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -14,14 +13,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.GoogleAuthProvider
-
 import com.google.firebase.storage.StorageReference
-import com.uwdp.whatyouwant.MainActivity
-import com.uwdp.whatyouwant.R
 import com.uwdp.whatyouwant.databinding.ActivityAddBinding
+import com.uwdp.whatyouwant.util.MyApplication
 import java.io.File
 import java.util.*
 

@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 import com.uwdp.whatyouwant.databinding.ItemMainBinding
-
-
+import com.uwdp.whatyouwant.util.MyApplication
 
 
 class MyViewHolder(val binding: ItemMainBinding) : RecyclerView.ViewHolder(binding.root)

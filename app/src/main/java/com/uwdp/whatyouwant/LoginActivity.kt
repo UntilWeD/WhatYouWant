@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.uwdp.whatyouwant.Search.SearchActivity
 import com.uwdp.whatyouwant.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -30,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this){ task ->
                 if(task.isSuccessful){
                     Toast.makeText(this,"로그인에 성공하셨습니다. ", Toast.LENGTH_LONG).show()
-                    val intent = Intent(this,FragmentActivity::class.java)
+                    val intent = Intent(this,SearchActivity::class.java)
                     startActivity(intent)
                 } else{
                     Toast.makeText(this,"로그인에 실패하셨습니다. ", Toast.LENGTH_LONG).show()

@@ -11,11 +11,11 @@ import com.bumptech.glide.Glide
 import com.uwdp.whatyouwant.databinding.ActivitySearchBinding
 import com.uwdp.whatyouwant.databinding.ItemSearchBinding
 
-class SearchAdapter(val context: Context, val items: MutableList<Items>)
+class SearchAdapter(val context: Context, val items: List<Items>)
     : RecyclerView.Adapter<SearchAdapter.Viewholder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):Viewholder {
         val binding = ItemSearchBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-
         return Viewholder(binding)
     }
 
@@ -29,11 +29,9 @@ class SearchAdapter(val context: Context, val items: MutableList<Items>)
 
     inner class Viewholder(private val binding: ItemSearchBinding) : RecyclerView.ViewHolder(binding.root) {
         fun binditems(item : Items){
-            val title = items[position].title
-            val price = items[position].lprice
 
-            binding.txtSearchtitle.text = Html.fromHtml(title).toString()
-            binding.txtSearchprice.text = "최저가 " + price + "원"
+            binding.txtSearchtitle.text = Html.fromHtml(item.title.toString())
+            binding.txtSearchprice.text = "최저가 " + item.lprice + "원"
 
             Glide.with(context)
                 .load(item.image)

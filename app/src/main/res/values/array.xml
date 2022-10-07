@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner_display">
+        <item>20개</item>
+        <item>50개</item>
+        <item>100개</item>
+    </string-array>
+
+    <string-array name="spinner_sort">
+        <item>유사도순</item>
+        <item>등록일순</item>
+        <item>최저가순</item>
+        <item>최고가순</item>
+    </string-array>
+</resources>

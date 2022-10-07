@@ -3,6 +3,9 @@ package com.uwdp.whatyouwant.Search
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +13,7 @@ import androidx.appcompat.widget.`SearchView$InspectionCompanion`
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.uwdp.whatyouwant.R
 import com.uwdp.whatyouwant.databinding.ActivitySearchBinding
 
 import retrofit2.*
@@ -24,7 +28,8 @@ class SearchActivity : AppCompatActivity() {
 
     private var display : Int = 20
     private var start: Int = 1
-    private var searchWord : String? = "사과"
+    private var searchWord : String? = ""
+    private var sort : String = "sim"
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://openapi.naver.com/")
@@ -33,16 +38,109 @@ class SearchActivity : AppCompatActivity() {
     private val api = retrofit.create(NaverAPI::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = com.uwdp.whatyouwant.databinding.ActivitySearchBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        binding = ActivitySearchBinding.inflate(layoutInflater)
+        var DisplaySpinner = binding.spinnerDisplay
+        var SortSpinner = binding.spinnerSort
+
+
         checkPermission()
 
         binding.searchViewItems.setOnQueryTextListener(searchViewTextListener)
 
+        DisplaySpinner.adapter= ArrayAdapter.createFromResource(this, R.array.spinner_display, android.R.layout.simple_spinner_item)
+        SortSpinner.adapter = ArrayAdapter.createFromResource(this,R.array.spinner_sort, android.R.layout.simple_spinner_item)
+
+
+        // 검색 디스플레이 스피너
+        DisplaySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long) {
+                when(position){
+                    // 첫번째항목, 20개
+                    0 -> {
+                        display = 20
+                        itemSearchResult(searchWord)
+                        if (view != null){
+                            Toast.makeText(this@SearchActivity,"20개로 설정되었습니다.",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    1 -> {
+                        display = 50
+                        itemSearchResult(searchWord)
+                        if (view != null){
+                            Toast.makeText(this@SearchActivity,"50개로 설정되었습니다.",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    2 -> {
+                        display = 100
+                        itemSearchResult(searchWord)
+                        if (view != null){
+                            Toast.makeText(this@SearchActivity,"100개로 설정되었습니다.",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                }
+            }
+        }
+
+        // 소트 디스플레이 스피너
+        SortSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long) {
+                when(position){
+                    // 유사도순
+                    0 -> {
+                        sort = "sim"
+                        itemSearchResult(searchWord)
+                        if (view != null){
+                            Toast.makeText(this@SearchActivity,"20개로 설정되었습니다.",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    // 등록일순
+                    1 -> {
+                        sort = "date"
+                        itemSearchResult(searchWord)
+                        if (view != null){
+                            Toast.makeText(this@SearchActivity,"50개로 설정되었습니다.",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    // 최저가순
+                    2 -> {
+                        sort = "asc"
+                        itemSearchResult(searchWord)
+                        if (view != null){
+                            Toast.makeText(this@SearchActivity,"100개로 설정되었습니다.",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    // 최고가순
+                    3 -> {
+                        sort = "dsc"
+                        itemSearchResult(searchWord)
+                        if (view != null){
+                            Toast.makeText(this@SearchActivity,"100개로 설정되었습니다.",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                }
+            }
+        }
+        setContentView(binding.root)
     }
 
 
+
+    //검색버튼을 눌렀을때
     var searchViewTextListener: SearchView.OnQueryTextListener =
         object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -54,8 +152,10 @@ class SearchActivity : AppCompatActivity() {
             }
         }
 
+
+    // 검색기능-레트로핏2
     private fun itemSearchResult(query : String?){
-        val callGetSearchItems = api.getSearchItems(CLIENT_ID,CLIENT_SECRET,query,display,start)
+        val callGetSearchItems = api.getSearchItems(CLIENT_ID,CLIENT_SECRET,query,display,start,sort)
         callGetSearchItems.enqueue(object : Callback<ResultGetSearchItems> {
                 override fun onResponse(
                     call: Call<ResultGetSearchItems>,
@@ -73,6 +173,11 @@ class SearchActivity : AppCompatActivity() {
                 }
             })
     }
+
+
+
+
+
 
 
     // 인터넷권한 체크 함수

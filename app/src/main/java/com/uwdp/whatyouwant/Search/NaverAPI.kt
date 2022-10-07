@@ -20,7 +20,8 @@ interface NaverAPI{
         @Header("X-Naver-Client-Secret") clientSecret:String,
         @Query("query") query: String?,
         @Query("display") display: Int? = null,
-        @Query("start") start: Int? = null
+        @Query("start") start: Int? = null,
+        @Query("sort") sort: String? = null
     ): Call<ResultGetSearchItems>
 }
 

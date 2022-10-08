@@ -5,21 +5,27 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.SearchView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.widget.`SearchView$InspectionCompanion`
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.navigation.NavigationView
+import com.uwdp.whatyouwant.MainActivity
 import com.uwdp.whatyouwant.R
 import com.uwdp.whatyouwant.databinding.ActivitySearchBinding
 
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.system.exitProcess
 
 
 class SearchActivity : AppCompatActivity() {
@@ -33,6 +39,10 @@ class SearchActivity : AppCompatActivity() {
     private var searchWord : String? = ""
     private var sort : String = "sim"
 
+    lateinit var navigationView : NavigationView
+    lateinit var drawerLayout: DrawerLayout
+
+    //레트로핏
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://openapi.naver.com/")
         .addConverterFactory(GsonConverterFactory.create())
@@ -42,19 +52,27 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
-        var DisplaySpinner = binding.spinnerDisplay
-        var SortSpinner = binding.spinnerSort
+        setContentView(binding.root)
 
+        setSupportActionBar(binding.searchToolbar)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)  //드로어 꺼낼 홈버튼 활성화
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_dehaze_24)  //홈버튼이미지
+        supportActionBar?.setDisplayShowTitleEnabled(false) //타이틀 안보이게
+
+        drawerLayout = binding.searchDrawer
+        navigationView = binding.navView
 
         checkPermission()
 
         binding.searchViewItems.setOnQueryTextListener(searchViewTextListener)
 
+        // 검색 디스플레이 스피너
+        val DisplaySpinner = binding.spinnerDisplay
+        val SortSpinner = binding.spinnerSort
         DisplaySpinner.adapter= ArrayAdapter.createFromResource(this, R.array.spinner_display, android.R.layout.simple_spinner_item)
         SortSpinner.adapter = ArrayAdapter.createFromResource(this,R.array.spinner_sort, android.R.layout.simple_spinner_item)
 
-
-        // 검색 디스플레이 스피너
         DisplaySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
@@ -138,13 +156,37 @@ class SearchActivity : AppCompatActivity() {
             }
         }
 
-        setContentView(binding.root)
+        binding.navView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+
+                R.id.menu1 -> {
+
+                    val intent = Intent(this, SearchActivity::class.java)
+                    startActivity(intent)
+
+                }
+
+                R.id.menu2 -> {
+
+                    Toast.makeText(this,"북마크게시판",Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+
+                }
+
+                R.id.menu3 -> {
+
+                    moveTaskToBack(true)
+                    finishAndRemoveTask()
+                    exitProcess(0)
+                }
+
+
+            }
+            true
+        }
+
     }
-
-
-
-
-
 
     //검색버튼을 눌렀을때
     var searchViewTextListener: SearchView.OnQueryTextListener =
@@ -180,12 +222,6 @@ class SearchActivity : AppCompatActivity() {
             })
     }
 
-
-
-
-
-
-
     // 인터넷권한 체크 함수
     private fun checkPermission() {
         val Internetpermission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.INTERNET)
@@ -216,7 +252,16 @@ class SearchActivity : AppCompatActivity() {
         })
     }
 
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item!!.itemId){
+            android.R.id.home->{
+                //햄버거버튼클릭시 네비게이션드로어열기
+                drawerLayout.openDrawer(GravityCompat.START)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }
+
 

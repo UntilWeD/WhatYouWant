@@ -1,6 +1,8 @@
 package com.uwdp.whatyouwant.Search
 
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -135,8 +137,12 @@ class SearchActivity : AppCompatActivity() {
                 }
             }
         }
+
         setContentView(binding.root)
     }
+
+
+
 
 
 
@@ -201,6 +207,13 @@ class SearchActivity : AppCompatActivity() {
         binding.searchRecyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         binding.searchRecyclerView.adapter = myadapter
         binding.searchRecyclerView.setHasFixedSize(true)
+
+        myadapter.SetOnItemClickListener(object : SearchAdapter.OnItemClickListener{
+            override fun onItemClick(v: View, item: Items, pos: Int) {
+                var intent = Intent(Intent.ACTION_VIEW, Uri.parse("${item.link}"))
+                startActivity(intent)
+            }
+        })
     }
 
 

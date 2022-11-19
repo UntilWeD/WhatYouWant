@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.uwdp.whatyouwant" >
+    package="com.uwdp.whatyouwant">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,7 +14,13 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.WhatYouWant" >
+        android:theme="@style/Theme.WhatYouWant">
+        <activity
+            android:name=".Bookmark.MemoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Bookmark.BookmarkActivity"
+            android:exported="false" />
         <activity
             android:name=".Search.SearchActivity"
             android:exported="false" />
@@ -26,8 +32,8 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="true" >
+            android:name=".Login.LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,10 +41,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Login.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ReviewActivity"
             android:exported="true" />
     </application>
 

@@ -1,21 +1,26 @@
 package com.uwdp.whatyouwant.Search
 
 import android.content.Context
-import android.content.Intent
-import android.inputmethodservice.Keyboard
-import android.net.Uri
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.uwdp.whatyouwant.databinding.ActivitySearchBinding
+import com.uwdp.whatyouwant.Bookmark.Memo
+import com.uwdp.whatyouwant.Bookmark.SqliteHelper
+import com.uwdp.whatyouwant.R
 import com.uwdp.whatyouwant.databinding.ItemSearchBinding
+import com.uwdp.whatyouwant.util.FBAuth
+import com.uwdp.whatyouwant.util.FBRef
 
 class SearchAdapter(val context: Context, val items: List<Items>)
     : RecyclerView.Adapter<SearchAdapter.Viewholder>() {
+
+    val DB_NAME = "sqlite.sql"
+    val DB_VERSION = 1
+    val helper = SqliteHelper(context,DB_NAME, DB_VERSION)
 
     interface OnItemClickListener{
         fun onItemClick(v: View, item: Items, pos:Int)
@@ -55,11 +60,12 @@ class SearchAdapter(val context: Context, val items: List<Items>)
                 }
             }
 
+            val btn_bookmark = itemView.findViewById<ImageView>(R.id.btn_bookmark)
+
+            //북마크가 있을때
+            btn_bookmark.setOnClickListener{
+                FBRef.bookmarkRef.child(FBAuth.getUid()).push().setValue(item)
+            }
         }
-
     }
-
-
-
-
 }

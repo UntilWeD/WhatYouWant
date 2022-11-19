@@ -7,21 +7,29 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 
-import com.uwdp.whatyouwant.databinding.ActivityMainBinding
+import com.uwdp.whatyouwant.databinding.ActivityReviewBinding
 import com.uwdp.whatyouwant.util.MyApplication
 
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class ReviewActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityReviewBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityReviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         myCheckPermission(this)
         binding.addFab.setOnClickListener{
             startActivity(Intent(this, AddActivity::class.java))
+
+        setSupportActionBar(binding.searchToolbar)
+
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_dehaze_24)  //홈버튼이미지
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.title = "리뷰게시판"
+
         }
     }
 

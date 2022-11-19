@@ -1,4 +1,4 @@
-package com.uwdp.whatyouwant
+package com.uwdp.whatyouwant.Login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.uwdp.whatyouwant.databinding.ActivityMainBinding
+import com.uwdp.whatyouwant.databinding.ActivityReviewBinding
 import com.uwdp.whatyouwant.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {

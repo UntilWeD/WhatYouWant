@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@drawable/toolbar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
         </androidx.appcompat.widget.Toolbar>
@@ -35,14 +35,14 @@
             android:id="@+id/search_view_items"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintRight_toLeftOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/search_recycler_view"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="60dp"
             android:iconifiedByDefault="false"
-            android:queryHint="검색어를 입력하시오">
-        </SearchView>
+            android:queryHint="검색어를 입력하시오"
+            app:layout_constraintBottom_toTopOf="@+id/search_recycler_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"></SearchView>
 
         <Spinner
             android:id="@+id/spinner_sort"
@@ -72,7 +72,8 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:menu="@menu/menu_search_drawer"
-        app:headerLayout="@layout/search_drawer_header">
+        app:headerLayout="@layout/search_drawer_header"
+        android:background="#CCFFFFFF">
     </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

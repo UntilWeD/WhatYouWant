@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -23,11 +24,14 @@ class AddActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityAddBinding
     lateinit var filePath: String
+    private lateinit var toolbar : androidx.appcompat.widget.Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setSupportActionBar(binding.searchToolbar)
 
     }
 

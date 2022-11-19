@@ -16,6 +16,8 @@ import com.uwdp.whatyouwant.databinding.ActivityFragmentBinding
 class FragmentActivity : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
 
+
+
     class MyFragmentPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
         val fragments: List<Fragment>
         init {

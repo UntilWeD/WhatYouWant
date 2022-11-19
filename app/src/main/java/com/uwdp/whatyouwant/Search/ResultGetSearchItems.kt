@@ -1,5 +1,7 @@
 package com.uwdp.whatyouwant.Search
 
+import java.io.Serializable
+
 
 data class ResultGetSearchItems(
     var start: Int = 0,
@@ -18,4 +20,4 @@ data class Items(
     var category1 : String = "",
     var category2 : String = "",
     var category3 : String = ""
-)
+) : Serializable

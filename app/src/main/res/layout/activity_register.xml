@@ -6,14 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:src="@drawable/draw1"
+        android:scaleType = "fitXY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email created!"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/et_email"
+        android:layout_margin="35dp"/>
+
     <TextView
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="210dp"
-        android:text=" 아이디: "
-        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/text2"
         app:layout_constraintRight_toLeftOf="@+id/et_email"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,18 +40,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="250dp"
-        android:text=" 비밀번호: "
-        android:textSize="20sp"
         app:layout_constraintRight_toLeftOf="@+id/et_email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
+        android:background="@drawable/rounding_box"
         android:id="@+id/et_email"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="320dp"
         android:ems="12"
         android:hint=" 이메일을 입력하세요 "
         android:inputType="textEmailAddress"
@@ -44,34 +59,40 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:background="@drawable/rounding_box"
         android:id="@+id/et_password"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:ems="12"
         android:hint=" 비밀번호를 입력하세요 "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_email"/>
+        app:layout_constraintTop_toBottomOf="@+id/et_email"
+        android:layout_marginTop="15dp" />
 
     <Button
         android:id="@+id/btn_register"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background1"
         android:text="회원가입완료"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#111111"
+        app:layout_constraintBottom_toTopOf="@+id/btn_quit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="200dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp"/>
 
     <Button
         android:id="@+id/btn_quit"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background1"
         android:text="회원가입취소"
+        android:textColor="#111111"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_register"
-        android:layout_marginBottom="200dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="100dp"  />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
